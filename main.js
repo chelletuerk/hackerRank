@@ -13,8 +13,21 @@ $.ajax({
 const display = (randomThree) => {
   randomThree.map(obj => {
     $('.card-container').append(`
-      <div class='card'>
-        ${obj.name}</div>`)
+      <div class="card">
+        <div class="card-content">
+          <img class="avatar"
+               src=https://api.adorable.io/avatars/150/${obj.email}3E.png>
+          <div class="catch-phrase">
+            "${obj.company.catchPhrase}"
+          </div>
+          <div class="name">
+            ${obj.name}
+          </div>
+          <div class="email">
+            ${obj.email}
+          </div>
+        </div>
+      </div>`)
   })
 }
 
