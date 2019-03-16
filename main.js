@@ -19,7 +19,6 @@ const display = (randomThree) => {
 }
 
 const randomThreeCards = (data) => {
-    const shuffle = data.sort(() => 0.5 - Math.random())
-    let randomThree = shuffle.slice(0, 3);
-    display(randomThree)
+  const randomThree = data.sort(() => 0.5 - Math.random()).slice(0, 3)
+  display(randomThree)
 }
