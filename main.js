@@ -63,10 +63,10 @@ const displayCards = (randomThree) => {
   })
 }
 
-const displayPosts = (title, body) => {
+const displayPosts = (capTitle, body) => {
   $('.posts-container').append(`
     <div class="posts">
-      <div class="title">${title}</div>
+      <div class="title">${capTitle}</div>
       <div class="body">${body}</div>
     </div>
   `)
@@ -80,8 +80,12 @@ const findAssociatedPosts = (data, userId) => {
     const matches = match.sort(() => 0.5 - Math.random()).slice(0, 5)
     const posts = matches.map((post) => {
       const title = post.title
+      const capTitle = title.toLowerCase()
+        .split(' ')
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+        .join(' ')
       const body = post.body
-      displayPosts(title, body)
+      displayPosts(capTitle, body)
     })
   }
 }
