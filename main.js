@@ -10,7 +10,24 @@ $.ajax({
     }
 })
 
-const findPost = (userId) => {
+$('.card-container').append(`
+  <div class="posts-container"><span>Click a card to view five of their posts</span></div>
+`)
+
+$('.card-container').on('click', '.card', (e) => {
+    const userId = e.target.id
+    $('.posts-container').toggleClass('expanded')
+
+    if ($('.posts-container').hasClass('expanded')) {
+      $('span').hide()
+      getPost(userId)
+    } else {
+      $('.posts').children().remove()
+      $('span').show()
+    }
+  })
+
+const getPost = (userId) => {
   $.ajax({
       url : `https://jsonplaceholder.typicode.com/posts?userId=${userId}`,
       type : 'GET',
@@ -46,10 +63,6 @@ const displayCards = (randomThree) => {
   })
 }
 
-$('.card-container').append(`
-  <div class="posts-container"><span>Click a card to view five of their posts</span></div>
-`)
-
 const displayPosts = (title, body) => {
   $('.posts-container').append(`
     <div class="posts">
@@ -58,12 +71,6 @@ const displayPosts = (title, body) => {
     </div>
   `)
 }
-
-$('.card-container').on('click', '.card', (e) => {
-  const userId = e.target.id
-  $('.posts').children().remove()
-  findPost(userId)
-})
 
 const findAssociatedPosts = (data, userId) => {
   if (userId) {
