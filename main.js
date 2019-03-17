@@ -3,6 +3,8 @@
 //I've made the app responsive with flexbox, so please, go changing
 //browser window sizes to your delight!
 
+//You can also check this puppy out on gh-pages 'https://chelletuerk.github.io/hackerRank/'
+
 
 //make initial API call to 'GET' users
 //render 3 random user cards upon each refresh
