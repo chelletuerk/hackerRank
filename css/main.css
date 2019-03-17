@@ -78,6 +78,10 @@ html, body {
   overflow: visible;
 }
 
+.title {
+  font-size: 30px;
+}
+
 @media screen and (max-width: 868px) {
   .posts-container {
     min-width: 350px;
