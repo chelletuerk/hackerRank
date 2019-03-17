@@ -10,13 +10,13 @@ $.ajax({
     }
 })
 
-const display = (randomThree) => {
+const displayCards = (randomThree) => {
   randomThree.map(obj => {
-    $('.card-container').append(`
+    $('.card-container').prepend(`
       <div class="card">
+        <img class="avatar"
+          src=https://api.adorable.io/avatars/150/${obj.email}3E.png>
         <div class="card-content">
-          <img class="avatar"
-               src=https://api.adorable.io/avatars/150/${obj.email}3E.png>
           <div class="catch-phrase">
             "${obj.company.catchPhrase}"
           </div>
@@ -27,11 +27,16 @@ const display = (randomThree) => {
             ${obj.email}
           </div>
         </div>
-      </div>`)
+      </div>
+      `)
   })
 }
 
+$('.card-container').append(`
+  <div class="posts-container"><span>Click a card to view five of their posts</span></div>
+`)
+
 const randomThreeCards = (data) => {
   const randomThree = data.sort(() => 0.5 - Math.random()).slice(0, 3)
-  display(randomThree)
+  displayCards(randomThree)
 }
