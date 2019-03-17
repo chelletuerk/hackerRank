@@ -94,6 +94,7 @@ html, body {
 .body {
   color: #294762 80%;
   margin: 0 20px;
+  margin-bottom: 30px;
   font-size: 13px;
   font-face: OpenSans;
   character: 0px;
@@ -107,7 +108,7 @@ html, body {
 }
 
 .expanded {
-  height: 450px;
+  height: 550px;
   overflow: auto;
   transition: height 1000ms;
 }
