@@ -10,6 +10,20 @@ $.ajax({
     }
 })
 
+const findPost = (userId) => {
+  $.ajax({
+      url : `https://jsonplaceholder.typicode.com/posts?userId=${userId}`,
+      type : 'GET',
+      dataType:'json',
+      success : (data) => {
+        findAssociatedPosts(data, userId)
+      },
+      error : (response) => {
+          alert(`Error: ${response.status}`)
+      }
+  })
+}
+
 const displayCards = (randomThree) => {
   randomThree.map(obj => {
     $('.card-container').prepend(`
@@ -36,26 +50,20 @@ $('.card-container').append(`
   <div class="posts-container"><span>Click a card to view five of their posts</span></div>
 `)
 
+const displayPosts = (title, body) => {
+  $('.posts-container').append(`
+    <div class="posts">
+      <div class="title">${title}</div>
+      <div class="body">${body}</div>
+    </div>
+  `)
+}
+
 $('.card-container').on('click', '.card', (e) => {
   const userId = e.target.id
+  $('.posts').children().remove()
   findPost(userId)
 })
-
-const findPost = (userId) => {
-  $.ajax({
-      url : `https://jsonplaceholder.typicode.com/posts?userId=${userId}`,
-      type : 'GET',
-      dataType:'json',
-      success : (data) => {
-        //findAssociatedPosts(res, userId)
-        findAssociatedPosts(data, userId)
-        // console.log(data)
-      },
-      error : (response) => {
-          alert(`Error: ${response.status}`)
-      }
-  })
-}
 
 const findAssociatedPosts = (data, userId) => {
   if (userId) {
@@ -64,9 +72,9 @@ const findAssociatedPosts = (data, userId) => {
     })
     const matches = match.sort(() => 0.5 - Math.random()).slice(0, 5)
     const posts = matches.map((post) => {
-      console.log(post)
-      console.log(post.title)
-      console.log(post.body)
+      const title = post.title
+      const body = post.body
+      displayPosts(title, body)
     })
   }
 }
